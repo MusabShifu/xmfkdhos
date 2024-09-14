@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identify E. coli - Clinical Microbiology Game</title>
+    
+</head>
+<body>
+    <div class="game-container">
+        <h1>Identify the Microorganism</h1>
+        <div id="story-container">
+            <p id="feature"></p>
+            <button id="next-feature" onclick="nextFeature()">Reveal Next Feature</button>
+        </div>
+        <button id="show-question" class="hidden" onclick="showQuestion()">Show MCQ</button>
+        <div id="question-container" class="hidden">
+            <p id="question"></p>
+            <div class="options">
+                <button class="option" onclick="checkAnswer(this)">Gram-positive</button>
+                <button class="option" onclick="checkAnswer(this)">Gram-negative</button>
+                <button class="option" onclick="checkAnswer(this)">Non-motile</button>
+                <button class="option" onclick="checkAnswer(this)">Produces yellow pigment</button>
+            </div>
+        </div>
+        <div id="result" class="hidden"></div>
+        <button id="show-details" class="hidden" onclick="showDetails()">Show Organism Details</button>
+        <div id="details-container" class="hidden">
+            <h2>E. coli</h2>
+            <p>Escherichia coli (E. coli) is a Gram-negative, rod-shaped bacterium that is commonly found in the lower intestine of warm-blooded organisms. Most E. coli strains are harmless, but some can cause serious food poisoning in humans.</p>
+        </div>
+    </div>
+    <script ></script>
+</body>
+</html>
