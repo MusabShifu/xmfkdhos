@@ -2,34 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identify E. coli - Clinical Microbiology Game</title>
-    
+    <link rel="stylesheet" href="micro.css">
+    <title>Micro Guess Me Game MG2</title>
 </head>
 <body>
-    <div class="game-container">
-        <h1>Identify the Microorganism</h1>
-        <div id="story-container">
-            <p id="feature"></p>
-            <button id="next-feature" onclick="nextFeature()">Reveal Next Feature</button>
-        </div>
-        <button id="show-question" class="hidden" onclick="showQuestion()">Show MCQ</button>
-        <div id="question-container" class="hidden">
-            <p id="question"></p>
-            <div class="options">
-                <button class="option" onclick="checkAnswer(this)">Gram-positive</button>
-                <button class="option" onclick="checkAnswer(this)">Gram-negative</button>
-                <button class="option" onclick="checkAnswer(this)">Non-motile</button>
-                <button class="option" onclick="checkAnswer(this)">Produces yellow pigment</button>
-            </div>
-        </div>
-        <div id="result" class="hidden"></div>
-        <button id="show-details" class="hidden" onclick="showDetails()">Show Organism Details</button>
-        <div id="details-container" class="hidden">
-            <h2>E. coli</h2>
-            <p>Escherichia coli (E. coli) is a Gram-negative, rod-shaped bacterium that is commonly found in the lower intestine of warm-blooded organisms. Most E. coli strains are harmless, but some can cause serious food poisoning in humans.</p>
+    <div class="container">
+        <h1 id="logo">(MG)<sub>2</sub></h1>
+        <div class="demo">
+            <input type="text" id="code" placeholder="000000">
+        <button id="start">Start</button>
+        <h3>starting the game ....</h3>
         </div>
     </div>
-    <script ></script>
+    <script src="micro.js"></script>
 </body>
 </html>
