@@ -7,7 +7,7 @@ startBtn.addEventListener('click', async () => {
         startBtn.className = 'clicked'
         let h3_anim = document.querySelector('#start + h3')
         h3_anim.className = 'clicked'
-        let req = await fetch('/data/' + v + '.json')
+        let req = await fetch('https://musabshifu.github.io/xmfkdhos/data/' + v + '.json')
         let data = await req.json()
         load_game(data)
     }
