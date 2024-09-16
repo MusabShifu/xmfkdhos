@@ -12,7 +12,7 @@ startBtn.addEventListener('click', async () => {
         let dat = await r.json()
       const userIdList = dat["users"];
       if (userIdList.includes(Telegram.WebApp.initDataUnsafe.user.id)) {
-        alert(Telegram.WebApp.initDataUnsafe.user.id)
+        await alert(Telegram.WebApp.initDataUnsafe.user.id)
       
         let req = await fetch('https://raw.githubusercontent.com/MusabShifu/xmfkdhos/main/data/'+ v + '.json')
         let data = await req.json()
