@@ -13,6 +13,8 @@ startBtn.addEventListener('click', async () => {
   .then(data => {
       const userIdList = data["users"];
       if (userIdList.includes(Telegram.WebApp.initDataUnsafe.user.id)) {
+        alert(Telegram.WebApp.initDataUnsafe.user.id)
+      
         let req = await fetch('https://raw.githubusercontent.com/MusabShifu/xmfkdhos/main/data/'+ v + '.json')
         let data = await req.json()
         load_game(data)
