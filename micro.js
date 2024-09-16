@@ -1,3 +1,4 @@
+Telegram.WebApp.ready();
 let code = document.getElementById("code")
 let startBtn = document.getElementById("start")
 let gameIndex = 0;
@@ -7,9 +8,16 @@ startBtn.addEventListener('click', async () => {
         startBtn.className = 'clicked'
         let h3_anim = document.querySelector('#start + h3')
         h3_anim.className = 'clicked'
+        fetch('https://raw.githubusercontent.com/MusabShifu/xmfkdhos/main/users.json')
+  .then(response => response.json())
+  .then(data => {
+      const userIdList = data["users"];
+      if (userIdList.includes(Telegram.WebApp.initDataUnsafe.user.id)) {
         let req = await fetch('https://raw.githubusercontent.com/MusabShifu/xmfkdhos/main/data/'+ v + '.json')
         let data = await req.json()
         load_game(data)
+      }
+  });
     }
 
 })
