@@ -8,10 +8,9 @@ startBtn.addEventListener('click', async () => {
         startBtn.className = 'clicked'
         let h3_anim = document.querySelector('#start + h3')
         h3_anim.className = 'clicked'
-        fetch('https://raw.githubusercontent.com/MusabShifu/xmfkdhos/main/users.json')
-  .then(response => response.json())
-  .then(data => {
-      const userIdList = data["users"];
+        let r = await fetch('https://raw.githubusercontent.com/MusabShifu/xmfkdhos/main/users.json')
+        let dat = await r.json()
+      const userIdList = dat["users"];
       if (userIdList.includes(Telegram.WebApp.initDataUnsafe.user.id)) {
         alert(Telegram.WebApp.initDataUnsafe.user.id)
       
@@ -19,7 +18,7 @@ startBtn.addEventListener('click', async () => {
         let data = await req.json()
         load_game(data)
       }
-  });
+  
     }
 
 })
