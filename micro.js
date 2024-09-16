@@ -18,6 +18,9 @@ startBtn.addEventListener('click', async () => {
         let data = await req.json()
         load_game(data)
       }
+      else{
+        alert('Banded')
+      }
   
     }
 
