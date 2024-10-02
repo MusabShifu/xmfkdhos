@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Image Description App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+    //  align-items: center;
+     // justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width:100vw;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size:100px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .upload-label {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      //width:100vw;
+    }
+
+    #image-preview {
+      max-width: 100%;
+      margin: 20px 0;
+    }
+
+    #description {
+    width:100%;
+    display:block;
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      min-height: 100px;
+      font-size:50px;
+      height:60vh;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .loading.active {
+      display: block;
+    }
+    button{
+    display:block;
+    width:100%
+    font-size:20px;
+    border-radius:5px;
+    background:blue;
+    color:white;
+    width:100%;
+    font-size:70px;
+    transition:0.3s linear;
+    opacity:0;
+    }
+    button#clicked{
+    background:#ccc;
+    color:black;
+    }
+    button.v{
+    opacity:1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>QA Generator</h1>
+
+
+    <div class="loading">Generate Response ....</div>
+
+    <textarea id="description"></textarea>
+  <button>Send</button>
+  
+  </div>
+<div class="demo" ></div>
+
+<script type="importmap">
+    {
+      "imports": {
+        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+      }
+    }
+   </script>
+
+  <script type="module">
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+    // **IMPORTANT:** Replace with your actual Gemini API key
+    const API_KEY = 'AIzaSyCYVHu-zmLqIS9GakR9qPE6E-VDkatTq38'
+const genAI = new GoogleGenerativeAI(API_KEY);
+const b = document.querySelector("button")
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+    const descriptionDiv = document.getElementById('description');
+    const loadingDiv = document.querySelector('.loading');
+	b.className = "v"
+	b.onclick = await function() {
+	x(descriptionDiv.value)
+	}
+   async function x(Data){
+   b.id ="clicked"
+     let r = await model.generateContent('you are pathologist teacher Please summarize the following text in a short question and short answer format, ensuring that all questions are derived solely from the provided text. Focus on the following areas:  1. Primary questions about the diseases       2. Pathophysiology       3. Etiology     4. Clinical findings      5. Lab tests and findings (microbiological, histological, and laboratory tests)     6. Treatment      7. Complications      8. Important notes (most common, most likely, dangerous signs, etc.)            Generate at least 15 questions total, and provide the output as a JSON object structured like this:                  {      "QnA": {             {      "question": "[short question",       "answer": "short direct answer"       },       //more question about the disease at least 15  Question       } Here is the text I want you to provide me questions about it  :  [' + Data +"]");
+    
+          loadingDiv.classList.remove('active');
+
+          const json = JSON.parse(r.response.text().replace('```json',"").replace('```',""))
+          
+          const demo = document.querySelector(".demo");
+          console.log(json["QnA"])
+          document.querySelector(".container").innerHTML="";
+          json["QnA"].forEach((item, index) => {
+            const question = document.createElement("h3");
+            question.textContent = `Q${index + 1}: ${item.question}`;
+            const answer = document.createElement("p");
+            answer.textContent = `A: ${item.answer};`
+            demo.appendChild(question);
+            demo.appendChild(answer);
+            // Add a line break for better readability
+            demo.appendChild(document.createElement("br"));
+          });
+   
+   }
+  </script>
+
+</body>
+
+</html
